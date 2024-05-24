@@ -20,5 +20,5 @@ export class VehicleEffects {
     )
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions) { }
 }

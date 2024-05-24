@@ -13,5 +13,5 @@ export const initialVehicleState: VehicleState = {
 export type ImageMap = {
     [key: string]: string;
 };
-  
+
 

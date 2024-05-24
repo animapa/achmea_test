@@ -6,14 +6,12 @@ import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.com
 import { VehicleImageComponent } from './components/vehicle-image/vehicle-image.component';
 import { AppStoreModule } from './store';
 import { KentekenCheck } from 'rdw-kenteken-check';
-import { FormatInputPipe } from './format-input.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     VehicleFormComponent,
-    VehicleImageComponent,
-    FormatInputPipe
+    VehicleImageComponent
   ],
   imports: [
     BrowserModule,
@@ -23,4 +21,4 @@ import { FormatInputPipe } from './format-input.pipe';
   providers: [KentekenCheck],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

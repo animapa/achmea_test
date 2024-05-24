@@ -10,7 +10,7 @@ import { selectVehicleImage } from '../../store/vehicle/vehicle.selectors';
 export class VehicleImageComponent implements OnInit {
   imageUrl$: Observable<string> | undefined;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.imageUrl$ = this.store.select(selectVehicleImage);

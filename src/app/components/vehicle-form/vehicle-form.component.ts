@@ -25,8 +25,8 @@ export class VehicleFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.vehicleForm = this.fb.group({
-      vehicleType: ['', Validators.required],
-      vehicleSubtype: [''],
+      vehicleType: ['auto', Validators.required],
+      vehicleSubtype: ['Hatchback'],
       licensePlate: ['', [Validators.required, Validators.pattern(/^[A-Z0-9-]*$/)]]
     });
 
@@ -65,7 +65,6 @@ export class VehicleFormComponent implements OnInit {
       this.formInvalid = true;
     } else {
       this.formInvalid = false;
-      // Handle form submission
     }
   }
 }

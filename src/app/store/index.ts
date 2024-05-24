@@ -13,4 +13,4 @@ import { VehicleEffects } from './vehicle/vehicle.effects';
     StoreDevtoolsModule.instrument({ maxAge: 25 })
   ],
 })
-export class AppStoreModule {}
+export class AppStoreModule { }

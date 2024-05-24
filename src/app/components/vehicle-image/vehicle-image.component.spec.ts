@@ -1,18 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { VehicleImageComponent } from './vehicle-image.component';
 import { selectVehicleImage } from '../../store/vehicle/vehicle.selectors';
 
-@Component({
-  selector: 'app-vehicle-image',
-  templateUrl: './vehicle-image.component.html'
-})
-export class VehicleImageComponent implements OnInit {
-  imageUrl$: Observable<string> | undefined;
+describe('VehicleImageComponent', () => {
+  let component: VehicleImageComponent;
+  let fixture: ComponentFixture<VehicleImageComponent>;
+  let store: MockStore;
+  const mockImageUrl = 'https://example.com/vehicle.jpg';
+  const initialState = {
+    vehicle: {
+      imageUrl: mockImageUrl
+    }
+  };
 
-  constructor(private store: Store) {}
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [VehicleImageComponent],
+      providers: [
+        provideMockStore({
+          initialState,
+          selectors: [
+            { selector: selectVehicleImage, value: mockImageUrl }
+          ]
+        })
+      ]
+    }).compileComponents();
 
-  ngOnInit(): void {
-    this.imageUrl$ = this.store.select(selectVehicleImage);
-  }
-}
+    store = TestBed.inject(MockStore);
+    fixture = TestBed.createComponent(VehicleImageComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should select the image URL from the store on init', () => {
+    component.ngOnInit();
+    component.imageUrl$?.subscribe(imageUrl => {
+      expect(imageUrl).toBe(mockImageUrl);
+    });
+  });
+});
